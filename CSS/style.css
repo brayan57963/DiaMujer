@@ -1,0 +1,232 @@
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* BODY */
+
+body {
+    height: 100vh;
+    background: radial-gradient(circle at bottom, #020a18, #000);
+    overflow: hidden;
+    color: white;
+    position: relative;
+}
+
+/* 🌙 cielo */
+
+.night {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #08142e, #000);
+    z-index: -3;
+}
+
+/* ✨ estrellas */
+
+body::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(white 1px, transparent 1px);
+    background-size: 3px 3px;
+    opacity: .15;
+    animation: starsMove 60s linear infinite;
+}
+
+@keyframes starsMove {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-200px);
+    }
+}
+
+/* 🌠 estrellas fugaces */
+
+.shooting-stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.shooting-star {
+    position: absolute;
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, white, transparent);
+    animation: shoot 3s linear infinite;
+}
+
+@keyframes shoot {
+
+    0% {
+        transform: translate(-200px, -200px) rotate(30deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(120vw, 70vh) rotate(30deg);
+        opacity: 0;
+    }
+
+}
+
+/* 🌼 FLORES */
+
+.flowers {
+    position: absolute;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 40px;
+    filter: drop-shadow(0 0 30px rgba(255, 220, 50, .6));
+    animation: flowersFloat 5s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes flowersFloat {
+
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-8px);
+    }
+
+}
+
+/* pétalos */
+
+.flower__leaf {
+    background: linear-gradient(#ffd500, #ffb300);
+    box-shadow:
+        0 0 15px rgba(255, 210, 0, .8),
+        0 0 30px rgba(255, 210, 0, .5);
+}
+
+/* centro */
+
+.flower__white-circle {
+    background: #5c3b00;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5) inset;
+}
+
+/* tallos */
+
+.flower__line {
+    background: linear-gradient(#1f7a3d, #36b55a);
+}
+
+/* hojas */
+
+.flower__line__leaf {
+    background: linear-gradient(#1f7a3d, #2c9e4c);
+}
+
+/* césped */
+
+.flower__grass {
+    background: linear-gradient(#0c4b24, #031b0d);
+    filter: drop-shadow(0 0 10px rgba(0, 255, 120, .3));
+}
+
+/* 🔒 CANDADO */
+
+.lock-wrapper {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+}
+
+.lock-container {
+    background: linear-gradient(#f4d06f, #caa23d);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow:
+        0 0 25px rgba(255, 210, 0, .6),
+        inset 0 5px 15px rgba(255, 255, 255, .3);
+}
+
+/* números */
+
+.wheel {
+    background: #5a4a2e;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 22px;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, .4);
+}
+
+/* botones */
+
+.wheel-buttons button {
+    background: #444;
+    border: none;
+    color: white;
+    padding: 4px 8px;
+    margin: 2px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.wheel-buttons button:hover {
+    background: #ffd500;
+    color: black;
+    transform: scale(1.1);
+}
+
+/* texto */
+
+.status {
+    margin-top: 12px;
+    font-style: italic;
+    font-size: 14px;
+    color: #fff6d0;
+    text-shadow: 0 0 10px rgba(255, 240, 150, .6);
+}
+
+/* 📱 móvil */
+
+@media(max-width:768px) {
+
+    .flowers {
+        transform: translateX(-50%) scale(.85);
+        bottom: 150px;
+    }
+
+    .lock-container {
+        transform: scale(.9);
+    }
+
+}
+
+.main-section {
+    padding: 40px 0;
+    position: relative;
+    background: linear-gradient(180deg, rgba(26, 26, 26, 1.95) 0%, rgba(10, 10, 10, 1.95) 100%);
+}
+

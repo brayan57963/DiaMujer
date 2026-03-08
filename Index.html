@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="DATOS/css/style.css">
+    <link rel="icon" href="DATOS/img/flowers.png" type="image/x-icon">
+
+    <title>FLORES</title>
+
+    <style>
+        /* Candado */
+
+        .lock-wrapper {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lock-container {
+            background: linear-gradient(#f4d06f, #caa23d);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(255, 210, 0, .6);
+        }
+
+        .wheels {
+            display: flex;
+            gap: 15px;
+        }
+
+        .wheel {
+            background: #5a4a2e;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 22px;
+            text-align: center;
+        }
+
+        .wheel-buttons {
+            display: flex;
+            flex-direction: column;
+            margin-top: 5px;
+        }
+
+        .wheel-buttons button {
+            margin: 2px;
+            border: none;
+            background: #333;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .status {
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* botón oculto */
+
+        .button {
+            margin-top: 30px;
+            display: none;
+        }
+
+        .button button {
+            padding: 10px 20px;
+            background: #ffd500;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+
+        .button a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="greetings">
+        <span>M</span>
+        <span>I</span>
+        <span>&nbsp;</span>
+        <span>M</span>
+        <span>U</span>
+        <span>Ñ</span>
+        <span>E</span>
+        <span>C</span>
+        <span>A</span>
+    </div>
+
+    <div class="description">
+        <span>SON PARA TI 💛</span>
+    </div>
+
+    <!-- CANDADO -->
+
+    <div class="lock-wrapper">
+
+        <div class="lock-container">
+
+            <div class="wheels">
+
+                <div>
+                    <div class="wheel" id="wheel1"><span>00</span></div>
+                    <div class="wheel-buttons">
+                        <button onclick="changeDigit(1,1)">↑</button>
+                        <button onclick="changeDigit(1,-1)">↓</button>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="wheel" id="wheel2"><span>00</span></div>
+                    <div class="wheel-buttons">
+                        <button onclick="changeDigit(2,1)">↑</button>
+                        <button onclick="changeDigit(2,-1)">↓</button>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="wheel" id="wheel3"><span>00</span></div>
+                    <div class="wheel-buttons">
+                        <button onclick="changeDigit(3,1)">↑</button>
+                        <button onclick="changeDigit(3,-1)">↓</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="status" id="status">
+                Ingresa la fecha especial
+            </div>
+
+        </div>
+    </div>
+
+    <!-- BOTON -->
+
+    <div class="button" id="flowerButton">
+        <button>
+            <a href="DATOS/FLORES.html">CLICK PLEASE 🌼</a>
+        </button>
+    </div>
+
+    <script>
+
+        const correctCombination = [23, 6, 19];
+        let currentCombination = [0, 0, 0];
+
+        function changeDigit(wheel, delta) {
+
+            const wheelElement = document.getElementById(`wheel${wheel}`);
+            let currentDigit = parseInt(wheelElement.querySelector("span").textContent);
+
+            currentDigit = (currentDigit + delta + 32) % 32;
+
+            wheelElement.querySelector("span").textContent =
+                currentDigit.toString().padStart(2, "0");
+
+            currentCombination[wheel - 1] = currentDigit;
+
+            checkCombination();
+        }
+
+        function checkCombination() {
+
+            const status = document.getElementById("status");
+
+            if (currentCombination.join("") === correctCombination.join("")) {
+
+                status.textContent = "🔓 Correcto, ahora puedes entrar";
+                status.style.color = "lightgreen";
+
+                document.getElementById("flowerButton").style.display = "block";
+
+            } else {
+
+                status.textContent = "Ingresa la fecha especial";
+                status.style.color = "white";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
